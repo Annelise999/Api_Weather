@@ -1,14 +1,13 @@
 .debut {
    text-align: center;
-}
-
-.tab {
+   margin: auto;
     padding: auto;
-    padding-right: 1em;
-    padding-left: 1em;
-    margin: auto;
+   margin-bottom: 15px;
+
+    
 
 }
+
   .tableau {
     margin: auto;
     padding: auto;
@@ -19,13 +18,10 @@
     min-height: 100%;
     border: medium solid #000000;
    
-
   }
 
   th,td{
     border: thin solid #000000;
-   
-
   }
 
   th{

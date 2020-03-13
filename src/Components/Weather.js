@@ -12,9 +12,9 @@ class Weather extends Component {
     render() {
       return (
         <div className = "tab">
-             <h1 className= "debut"> La météo du jour est: </h1>
+             <h2 className= "debut"> LA MÉTÉO DU JOUR EST: </h2>
             <table className= "tableau">
-               
+
                 <tr className = "titre">
                     <th>Ville</th> 
                     <th>Température</th>

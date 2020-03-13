@@ -98,7 +98,7 @@ class App extends Component {
     var key;
     var type;
     var adress;
-    this.setState({city:city})
+  
     
     axios.get('https://api.netatmo.com/api/getpublicdata', {
       params: {
@@ -121,7 +121,7 @@ class App extends Component {
               {
                 for (adress in response.data.body[0].measures[key].res)         
               
-                  this.setState( {temperature: response.data.body[0].measures[key].res[adress][type] })
+                  this.setState( {temperature: response.data.body[0].measures[key].res[adress][type],city:city })
               }
 
           }
@@ -176,24 +176,22 @@ class App extends Component {
           
           <Row>
 
-            <Col xl="2" lg= "2" className= "d-none d-md-block" >
-
-              <Menu  callbackChangeCity={this.changeCity}></Menu>
-             
+            <Col xl="2" lg= "2" md = "2" className= "d-none d-lg-block" >
+              <Menu  callbackChangeCity={this.changeCity}></Menu>         
             </Col>
-
-            <Col className = "d-block d-md-none" md= "2" xs= "2">
+            <Col className = "d-block d-lg-none" lg = "2" md= "2" xs= "2">
             <DropDown callbackChangeCity={this.changeCity}></DropDown>
             </Col>
 
-            <Col xl="2" lg="2" md="4" xs="2"> </Col>
-            <Col xl="4" lg="4" d-md-none d-sm-block  >
+            <Col xl="2" lg="2" md="1" xs="1" ></Col>
+            <Col xl="4" lg="6" md= "6" xs= "6" >
               <br></br>
-              <Weather temperature={this.state.temperature} city={this.state.city}>
-              </Weather>
+              <br></br>
+              <Weather temperature={this.state.temperature} city={this.state.city}> </Weather>
             
             </Col>
-            <Col xl="4" lg="4" md="2"> </Col>
+            <Col xl="2" lg="2" md="3" xs="3"  ></Col>
+           
 
           </Row>
 
