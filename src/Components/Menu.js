@@ -15,11 +15,11 @@ class Menu extends Component {
     render() {
       return (
         <div class="vertical-menu">
-        <a href="#" class="active">Cities</a>
-        <a href="#"> Paris</a>
-        <a href="#"> New-York</a>
-        <a href="#"> Bogota</a>
-        <a href="#"> Berlin </a>
+        <a class="active">Cities</a>
+        <a onClick={() => this.props.callbackChangeCity('Paris')}> Paris</a>
+        <a onClick={() => this.props.callbackChangeCity('NewYork')}> New-York</a>
+        <a onClick={() => this.props.callbackChangeCity('Bogota')}> Bogota</a>
+        <a onClick={() => this.props.callbackChangeCity('Berlin')}> Berlin </a>
       </div>
   
     );
