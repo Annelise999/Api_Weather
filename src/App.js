@@ -3,7 +3,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Row, Col } from 'react-bootstrap';
 import qs from 'querystring'; 
 import Weather from './Components/Weather';
-import Menu from './Components/Menu'
+import Menu from './Components/Menu';
+import DropDown from './Components/DropDown';
 import './App.css';
 import axios from 'axios';
 
@@ -175,9 +176,16 @@ class App extends Component {
           
           <Row>
 
-            <Col xl="2" lg= "2" md="2" xs="2" >
-              <Menu callbackChangeCity={this.changeCity}></Menu>
+            <Col xl="2" lg= "2" className= "d-none d-md-block" >
+
+              <Menu  callbackChangeCity={this.changeCity}></Menu>
+             
             </Col>
+
+            <Col className = "d-block d-md-none" md= "2" xs= "2">
+            <DropDown callbackChangeCity={this.changeCity}></DropDown>
+            </Col>
+
             <Col xl="2" lg="2" md="4" xs="2"> </Col>
             <Col xl="4" lg="4" d-md-none d-sm-block  >
               <br></br>
