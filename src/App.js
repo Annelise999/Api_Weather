@@ -176,10 +176,10 @@ class App extends Component {
           
           <Row>
 
-            <Col xl="2" lg= "2" md = "2" className= "d-none d-lg-block" >
+            <Col xl="2" lg= "2" md = "2" className="d-none d-lg-block">
               <Menu  callbackChangeCity={this.changeCity}></Menu>         
             </Col>
-            <Col className = "d-block d-lg-none" lg = "2" md= "2" xs= "2">
+            <Col className="d-block d-lg-none" lg = "2" md= "2" xs= "2">
             <DropDown callbackChangeCity={this.changeCity}></DropDown>
             </Col>
 

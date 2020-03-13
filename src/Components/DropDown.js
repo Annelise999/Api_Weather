@@ -16,7 +16,7 @@ class DropDown extends Component {
         <div className="vertical-menu">
 
         <div className="dropdown" d-block d-md-none>
-        <DropdownButton className= "drop" id="dropdown-item-button" title="Cities" caret color="info">
+        <DropdownButton className= "drop" id="dropdown-item-button" title="Cities" color="info">
         <Dropdown.Item onClick={() => this.props.callbackChangeCity('Paris')} as="button">Paris</Dropdown.Item>
         <Dropdown.Item onClick={() => this.props.callbackChangeCity('NewYork')} as="button">NewYork</Dropdown.Item>
         <Dropdown.Item onClick={() => this.props.callbackChangeCity('Bogota')} as="button">Bogota</Dropdown.Item>
