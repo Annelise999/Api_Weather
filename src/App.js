@@ -14,7 +14,10 @@ class App extends Component {
   state = {
     temperature: 0,
     city: 'Paris',
-    token : ''
+    token : '',
+    token_time : '',
+    time_now : '',
+    expiration_date : '',
   }
 
   coord = {
@@ -45,14 +48,57 @@ class App extends Component {
 
   }
 
+ 
+
+  checkToken = () => {
+
+    var difference_time = (this.state.time_now - this.state.token_time) / 1000;
+    if (difference_time >= 10800) 
+    {
+      var url= "https://api.netatmo.com/oauth2/token"
+
+      const requestBody = {
+        grant_type: 'password',
+        client_id: '5de510cde0c2b13b42637224',
+        client_secret: 'C5MVVhs3ARk1CO73qH3ClREBJuQJ7Cc4nmN6',
+        username: 'anne-lise.herve@edu.ece.fr',
+        password: 'KiwiFunny91%',
+        scope: 'read_station'
+      }
+  
+      const config = {
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        }
+      }
+  
+      axios.post(url, qs.stringify(requestBody), config).then((result) => {
+  
+        this.setState({token:result.data.access_token})
+        this.changeCity('Paris')
+        this.setState({token_time : Date.now()})
+        this.setState({expiration_date : result.data.expire_in})
+      
+      })
+      .catch((err) => {
+       
+      })
+
+
+    }
+
+  }
+
   changeCity = (city) => {
 
-    console.log(this.coord[city].lat_ne)
+    this.setState({time_now : Date.now()})
+    this.checkToken()
 
     var key;
     var type;
     var adress;
     this.setState({city:city})
+    
     axios.get('https://api.netatmo.com/api/getpublicdata', {
       params: {
         lat_ne: this.coord[city].lat_ne,
@@ -65,7 +111,7 @@ class App extends Component {
       }
 
     }).then(response => {
-      if (response.status == 200) {     
+      if (response.status === 200) {   
         for(key in response.data.body[0].measures)
         { 
           for (type in response.data.body[0].measures[key].type)
@@ -73,7 +119,7 @@ class App extends Component {
             if  (response.data.body[0].measures[key].type[type] === "temperature")
               {
                 for (adress in response.data.body[0].measures[key].res)         
-                  console.log(response.data.body[0].measures[key].res[adress][type]) 
+              
                   this.setState( {temperature: response.data.body[0].measures[key].res[adress][type] })
               }
 
@@ -86,20 +132,12 @@ class App extends Component {
     }).catch(function (error) {
         console.log(error);
       })
+
+
   } 
 
   constructor(props) {
     super(props);
-
-    var key;
-    var type;
-    var adress;
-
-    var lat_ne = 48.86471476180278;
-    var lat_sw = 48.83579746243092;
-    var lon_ne = 2.373046875;
-    var lon_sw = 2.3291015625;
-    var token = '5e67c7fb273f77000c126424|ae38a4e805e189aae3b90e2fddfb6021'
     var url= "https://api.netatmo.com/oauth2/token"
 
     const requestBody = {
@@ -121,13 +159,13 @@ class App extends Component {
 
       this.setState({token:result.data.access_token})
       this.changeCity('Paris')
+      this.setState({token_time : Date.now()})
+      this.setState({expiration_date : result.data.expire_in})
     })
     .catch((err) => {
      
     })
   }
-
-  
 
   render() {
     return (
@@ -137,14 +175,17 @@ class App extends Component {
           
           <Row>
 
-            <Col xl="2" lg="3" md="4" xs="5" >
+            <Col xl="2" lg= "2" md="2" xs="2" >
               <Menu callbackChangeCity={this.changeCity}></Menu>
             </Col>
-            <Col xl="10" lg="9" md="8" xs="5">
+            <Col xl="2" lg="2" md="4" xs="2"> </Col>
+            <Col xl="4" lg="4" d-md-none d-sm-block  >
+              <br></br>
               <Weather temperature={this.state.temperature} city={this.state.city}>
               </Weather>
             
             </Col>
+            <Col xl="4" lg="4" md="2"> </Col>
 
           </Row>
 

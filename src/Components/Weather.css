@@ -1,0 +1,46 @@
+.debut {
+   text-align: center;
+}
+
+.tab {
+    padding: auto;
+    padding-right: 1em;
+    padding-left: 1em;
+    margin: auto;
+
+}
+  .tableau {
+    margin: auto;
+    padding: auto;
+    background-color: #eee;
+    color: black; 
+    border-collapse: collapse;
+    width: 50%;
+    min-height: 100%;
+    border: medium solid #000000;
+   
+
+  }
+
+  th,td{
+    border: thin solid #000000;
+   
+
+  }
+
+  th{
+    letter-spacing: 0.2em;
+    font-size: 1.2em;
+    color: darkslategrey;
+    text-align: center;
+    padding: 10px;
+   
+  }
+  
+  td {
+    font-size: 1.2em;
+    letter-spacing: 0.1em;
+    text-align: center;
+    padding: 10px;
+   
+  }

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-
+import './Weather.css'
 
 
 class Weather extends Component {
@@ -11,10 +11,21 @@ class Weather extends Component {
     
     render() {
       return (
-        <div>
-            <h2>{this.props.city}</h2>
-
-        <h3> {this.props.temperature}</h3>
+        <div className = "tab">
+             <h1 className= "debut"> La météo du jour est: </h1>
+            <table className= "tableau">
+               
+                <tr className = "titre">
+                    <th>Ville</th> 
+                    <th>Température</th>
+                </tr>
+                <tr className ="valeurs">
+                    <td>{this.props.city}</td> 
+                    <td>{this.props.temperature}</td>
+                </tr>
+            
+                </table>
+        
   </div>
   
     );
